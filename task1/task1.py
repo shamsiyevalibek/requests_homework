@@ -1,7 +1,7 @@
 """
 Task 1: Create a GET Request Function
 
-Goal: 
+Goal:
 - Create a function to get data from a public API.
 
 Function requirements:
