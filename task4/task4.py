@@ -29,3 +29,29 @@ Your implementation below:
 """
 
 # Your implementation here
+import requests
+
+def get_comments_by_post(post_id, limit=3):
+    url = "https://jsonplaceholder.typicode.com/comments"
+
+    params = {
+        "postId": post_id   
+    }
+
+    response = requests.get(url, params=params)  
+
+    if response.status_code == 200:
+        comments = response.json() 
+        
+        result = []
+        for comment in comments[:limit]:  
+            result.append({
+                "name": comment["name"],
+                "email": comment["email"]
+            })
+        
+        return result
+
+    else:
+        return [] 
+print(get_comments_by_post(9,limit=3))
