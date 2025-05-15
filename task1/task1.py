@@ -19,3 +19,18 @@ Your implementation below:
 """
 
 # Your implementation here
+import requests  # 1. HTTP so‘rovlar uchun kutubxona
+
+def get_post_data(post_id):
+    url = f"https://jsonplaceholder.typicode.com/posts/{post_id}"  # 2. API manzilini tayyorlaymiz
+    response = requests.get(url)  # 3. GET so‘rovini yuboramiz
+
+    if response.status_code == 200:  # 4. So‘rov muvaffaqiyatli bo‘lsa (status 200 bo‘lsa)
+        data = response.json()  # 5. JSON formatidagi javobni dictionary'ga aylantiramiz
+        return {
+            "title": data["title"],  # 6. faqat kerakli qismlarni ajratamiz
+            "body": data["body"]
+        }
+    else:
+        return {"error": "Post not found"}  # 7. xatolik bo‘lsa shunday javob qaytariladi
+print(get_post_data(1))
