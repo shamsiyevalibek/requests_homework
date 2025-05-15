@@ -32,3 +32,21 @@ Your implementation below:
 """
 
 # Your implementation here
+import requests  
+
+def safe_get_post(post_id):
+    url = f"https://jsonplaceholder.typicode.com/posts/{post_id}" 
+    response = requests.get(url) 
+
+    if response.status_code == 200: 
+        post_data = response.json()
+        return {
+            "success": True,
+            "data": post_data  
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Failed to get data"  
+        }
+print(safe_get_post(9999))
